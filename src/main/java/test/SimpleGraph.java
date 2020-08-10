@@ -10,7 +10,7 @@ import java.util.Map.Entry;
  * @param <T> vertex data
  * @param <E> edge data (e.g. direction, weight)
  */
-public interface SimpleGraph<T, E> {
+public interface SimpleGraph<T, E extends Invertible<E>> {
 
     Vertex<T> addVertex(T value);
 
@@ -28,7 +28,8 @@ public interface SimpleGraph<T, E> {
 
     /**
      * Calculates possible path for given source and destination. The interface does not restrict to return the optimal
-     * one. The {@code src} is excluded in resulting list.
+     * one. The {@code src} is excluded in resulting list. {@code Invertible E} must be oriented as it naturally appear
+     * on the path while walking from source to destination.
      *
      * @param src - source
      * @param dest - destination
